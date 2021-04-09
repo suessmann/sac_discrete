@@ -1,0 +1,28 @@
+env:
+  env: MountainCar-v0
+  timesteps: 400_000
+  test_every: 10_000
+  batch_size: 512
+  start_train: 10_000
+  start_act: 10_000
+  mem_size: 1_000_000
+  gamma: 0.99  # unfortunately yet we have two gammas
+
+model:
+  state_size: 2
+  action_size: 3
+  gamma: 0.99
+  tau: 1e-3
+  alpha: 0.2
+  update_every: 5
+  actor_lr: 5e-4
+  critic_lr: 1e-4
+  alpha_lr: 1e-5
+  temp: 0.5
+  hidden: 256
+  target_entropy_scale: 0.5
+  device: cpu
+
+wandb:
+  api_key: null
+  proj_name: SACDiscrete
