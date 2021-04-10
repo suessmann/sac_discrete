@@ -11,7 +11,7 @@ This is an implementation of Soft Actor Critic algorithm for a discrete action s
 
 To start training process, run `main.py -c PATH_TO_CFG -m train`.
 
-To start evaluation with gym rendering, first install the conda environment from `environment.yaml` and the run `main.py -c PATH_TO_CFG -m test`
+To start evaluation with gym rendering, first install the conda environment from `environment.yaml` and then run `main.py -c PATH_TO_CFG -m test`
 ## Benchmarks
 
 ### MountainCar-v0
