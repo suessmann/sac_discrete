@@ -133,6 +133,8 @@ class SACDiscrete:
         self.critic_1.load_state_dict(torch.load(path_crit_1, map_location=self.device))
         self.critic_2.load_state_dict(torch.load(path_crit_2, map_location=self.device))
 
+        print('Weights are loaded')
+
     def get_alpha(self):
         return self.alpha.item()
 

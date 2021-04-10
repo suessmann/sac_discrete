@@ -1,10 +1,11 @@
 import re
 import yaml
 import argparse
-from run import run
+from run import run_training, run_eval
 
 parser = argparse.ArgumentParser(description='Start training')
 parser.add_argument("-c", "--config", type=str, help="Path to the config file")
+parser.add_argument("-m", "--mode", type=str, help="train or test", default='test')
 
 if __name__ == '__main__':
     args = vars(parser.parse_args())
@@ -25,4 +26,8 @@ if __name__ == '__main__':
         cfg = yaml.load(ymfile, Loader=loader)
 
     print(cfg)
-    run(cfg)
+
+    if args['mode'] == 'train':
+        run_training(cfg)
+    elif args['mode'] == 'test':
+        run_eval(cfg)

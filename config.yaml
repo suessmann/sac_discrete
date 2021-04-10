@@ -26,3 +26,7 @@ model:
 wandb:
   api_key: null
   proj_name: SACDiscrete
+
+eval:
+  path_to_critics: ['models/critic_1.pt', 'models/critic_2.pt']
+  path_to_actor: 'models/actor.pt'

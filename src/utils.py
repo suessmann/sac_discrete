@@ -34,7 +34,6 @@ def train(model, config):
 
     done = 0
     total_reward = 0
-    reward_old = 0
 
     loss_act_hist = []
     loss_crit_hist = []
@@ -99,7 +98,7 @@ def train(model, config):
     return model, reward_mean_hist, reward_std_hist, timestep_hist
 
 
-def test(model, env, epochs=5):
+def test(model, env, epochs=5, render=False):
     reward_hist = []
 
     seed = hash(f'Please work SAC') % 1024 - 1
@@ -117,11 +116,15 @@ def test(model, env, epochs=5):
         while not done:
             action = model.get_action(state, deterministic=True)
 
+            if render:
+                env.render()
+
             state, reward, done, _ = env.step(action)
             reward_total += reward
 
         reward_hist.append(reward_total)
 
+    env.close()
     return np.mean(reward_hist), np.std(reward_hist)
 
 
@@ -149,11 +152,11 @@ def plot(x, reward_mean, reward_std):
     plt.fill_between(x, reward_mean - 3 * reward_std, reward_mean + 3 * reward_std,
                      alpha=0.15)
     plt.tight_layout()
-    plt.legend();
+    plt.legend()
 
     locs, labels = plt.xticks()
     xlabels = [f'{x:.0f}k' for x in locs / 1000]
-    plt.xticks(locs, xlabels);
+    plt.xticks(locs, xlabels)
 
     ax = plt.gca()
     ax.autoscale()
